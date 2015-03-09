@@ -154,10 +154,6 @@ class XliffDumper implements DumperInterface
             if ($meaning = $message->getMeaning()) {
                 $unit->setAttribute('extradata', 'Meaning: '.$meaning);
             }
-
-            if ($message->isNew()) {
-                $target->setAttribute('state', 'new');
-            }
         }
 
         return $doc->saveXML();
