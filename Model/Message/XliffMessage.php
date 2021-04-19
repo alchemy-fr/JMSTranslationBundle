@@ -147,7 +147,7 @@ class XliffMessage extends Message
 	 */
 	public function merge(Message $message) {
 		if ($this->getId() !== $message->getId()) {
-			throw new RuntimeException(sprintf('You can only merge messages with the same id. Expected id "%s", but got "%s".', $this->id, $message->getId()));
+			throw new RuntimeException(sprintf('You can only merge messages with the same id. Expected id "%s", but got "%s".', $this->getId(), $message->getId()));
 		}
 
 		foreach ($message->getSources() as $source) {
