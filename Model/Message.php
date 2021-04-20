@@ -80,7 +80,7 @@ class Message
      */
     public function __construct($id, $domain = 'messages')
     {
-        $this->id = $id;
+        $this->id = (string)$id;
         $this->domain = $domain;
     }
 
