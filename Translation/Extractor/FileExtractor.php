@@ -123,7 +123,24 @@ class FileExtractor implements ExtractorInterface, LoggerAwareInterface
         foreach ($this->excludedDirs as $dir) {
             $finder->exclude($dir);
         }
-
+        
+        foreach ($this->excludedDirs as $dir) {
+            if(substr($dir, 0, 1) === DIRECTORY_SEPARATOR) {
+                $l = strlen($this->directory);
+                if (substr($dir, 0, $l) === $this->directory) {
+                    // absolute exclude dir, same base as scanned dir
+                    $dir = substr($dir, $l + 1); // now relative
+                    $finder->exclude($dir);
+                } else {
+                    // absolute exclude is ignored if not same base
+                }
+            }
+            else {
+                // relative exclude dir, keep it
+                $finder->exclude($dir);
+            }
+        }
+        
         foreach ($this->excludedNames as $name) {
             $finder->notName($name);
         }
